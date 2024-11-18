@@ -19,7 +19,6 @@ func showLogo() {
 
 	// Read the file line by line
 	scanner := bufio.NewScanner(file)
-	fmt.Println("ASCII Art from the file:")
 
 	for scanner.Scan() {
 		fmt.Println(scanner.Text())

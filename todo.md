@@ -9,5 +9,6 @@
 - [ ] linter
 
 ## luigi
-- [ ] core
-- [ ] cmd
+- [x] core
+- [x] cmd
+- [x] combine together

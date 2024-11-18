@@ -27,7 +27,8 @@ func populateMap(data map[string]int, mu *sync.Mutex, wg *sync.WaitGroup, lenRnd
 
 	// Keep adding to the map until it reaches 1MB in size
 	for {
-		// add delay
+		// 1 second delay delay
+		time.Sleep(1000 * time.Millisecond)
 		mu.Lock()
 		if getMapSize(data) >= targetSize {
 			mu.Unlock()
@@ -58,7 +59,7 @@ func runner(numGoroutines int, pathCsv string, lenStringRnd int, NumberRnd int) 
 	var wg sync.WaitGroup
 
 	// Start goroutines
-	fmt.Println("number of runner:", numGoroutines)
+	fmt.Println("number of Goroutines:", numGoroutines)
 	for i := 0; i < numGoroutines; i++ {
 		wg.Add(1)
 		go populateMap(data, &mu, &wg, lenStringRnd, NumberRnd)

@@ -40,7 +40,7 @@ const targetSize = 1 << 18 // 1MB
 // const targetSize = 1 << 20 // 1MB
 func init() {
 	rootCmd.AddCommand(addCmd)
-	addCmd.Flags().StringVarP(&outputPath, "path", "d", "output.csv", "Path to save the output file")
+	addCmd.Flags().StringVarP(&outputPath, "path", "d", "/tmp/output.csv", "Path to save the output file")
 	addCmd.Flags().IntVarP(&concurrent, "concurrent", "r", 50, "number of concurrent")
 	// addCmd.Flags().Float64VarP(&num2, "num2", "b", 0, "Second number (required)")
 	addCmd.MarkFlagRequired("path")
