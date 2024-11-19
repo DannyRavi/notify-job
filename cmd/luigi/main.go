@@ -1,31 +1,53 @@
 package main
 
 import (
-	"fmt"
 	"os"
 	"time"
+
+	log "github.com/sirupsen/logrus"
 )
 
-func main() {
+var (
+	verbose       bool
+	directoryPath string
+)
 
+func init() {
+
+	log.SetFormatter(&log.TextFormatter{
+		DisableColors: false,
+		FullTimestamp: true,
+	})
+	log.SetLevel(log.InfoLevel)
+
+	rootCmd.AddCommand(addCmd)
+	addCmd.Flags().StringVarP(&directoryPath, "path", "d", "/tmp", "Path to watch the directory (please same address of Mario App)")
+	addCmd.Flags().BoolVarP(&verbose, "verbose", "v", false, "Enable verbose mode")
+	addCmd.MarkFlagRequired("path")
+	// addCmd.MarkFlagRequired("verbose")
+
+}
+
+func main() {
+	showLogo()
 	if os.Geteuid() != 0 {
-		fmt.Println("Error: This program must be run as root.")
-		os.Exit(1)
+		log.Panic("Error: This program must be run as root.")
 	}
 
 	pwd, err := os.Getwd()
 	if err != nil {
-		fmt.Println("Error getting working directory:", err)
+		log.Error("Error getting working directory:", err)
 		return
 	}
 
-	fmt.Println("Current working directory:", pwd)
+	log.Debug("Current working directory:", pwd)
 
-	fmt.Println("Running as root...")
+	log.Info("Running as root...")
+
 	start := time.Now()
 	Execute()
 	duration := time.Since(start)
 
 	// Print the execution time
-	fmt.Printf("Execution time: %v\n", duration)
+	log.Info("Execution time:", duration)
 }

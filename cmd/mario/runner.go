@@ -3,12 +3,13 @@ package main
 import (
 	"bytes"
 	"encoding/csv"
-	"fmt"
 	"math/rand"
 	"os"
 	"strconv"
 	"sync"
 	"time"
+
+	log "github.com/sirupsen/logrus"
 )
 
 func randomString(length int) string {
@@ -60,17 +61,17 @@ func statFile(filePath string) error {
 		// File exists, remove it
 		err = os.Remove(filePath)
 		if err != nil {
-			fmt.Println("Error removing file:", err)
+			log.Error("Error removing file:", err)
 			return err
 		}
-		fmt.Println("File "+ filePath +" removed successfully.")
+		log.Debug("File " + filePath + " removed successfully.")
 	} else if os.IsNotExist(err) {
 		// File does not exist, handle accordingly
-		fmt.Println("File does not exist. ok continue")
+		log.Debug("File does not exist. ok continue")
 		return nil
 	} else {
 		// Other error occurred
-		fmt.Println("Error checking file:", err)
+		log.Error("Error checking file:", err)
 		return err
 	}
 	return nil
@@ -83,7 +84,7 @@ func runner(numGoroutines int, pathCsv string, lenStringRnd int, NumberRnd int) 
 	var wg sync.WaitGroup
 
 	// Start goroutines
-	fmt.Println("number of Goroutines:", numGoroutines)
+	log.Info("number of Goroutines:", numGoroutines)
 	for i := 0; i < numGoroutines; i++ {
 		wg.Add(1)
 		go populateMap(data, &mu, &wg, lenStringRnd, NumberRnd)
@@ -95,7 +96,7 @@ func runner(numGoroutines int, pathCsv string, lenStringRnd int, NumberRnd int) 
 	// Create a CSV file
 	file, err := os.Create(pathCsv)
 	if err != nil {
-		fmt.Println("Error creating CSV file:", err)
+		log.Error("Error creating CSV file:", err)
 		return err
 	}
 	defer file.Close()
@@ -107,7 +108,7 @@ func runner(numGoroutines int, pathCsv string, lenStringRnd int, NumberRnd int) 
 	for key, value := range data {
 		err := writer.Write([]string{key, strconv.Itoa(value)})
 		if err != nil {
-			fmt.Println("Error writing to CSV file:", err)
+			log.Error("Error writing to CSV file:", err)
 			return err
 		}
 	}
@@ -117,9 +118,9 @@ func runner(numGoroutines int, pathCsv string, lenStringRnd int, NumberRnd int) 
 
 	// Check if there was any error during the writing
 	if err := writer.Error(); err != nil {
-		fmt.Println("Error during writing CSV:", err)
+		log.Error("Error during writing CSV:", err)
 	}
 
-	fmt.Println("Data written to output.csv successfully!")
+	log.Info("Data written to successfully!")
 	return nil
 }

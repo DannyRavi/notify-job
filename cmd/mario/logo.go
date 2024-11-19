@@ -4,6 +4,8 @@ import (
 	"bufio"
 	"fmt"
 	"os"
+
+	log "github.com/sirupsen/logrus"
 )
 
 func showLogo() {
@@ -12,7 +14,7 @@ func showLogo() {
 	// Open the file
 	file, err := os.Open(fileName)
 	if err != nil {
-		fmt.Printf("Error: Unable to open file %s: %v\n", fileName, err)
+		log.Error("Error: Unable to open file: " , fileName, err)
 		return
 	}
 	defer file.Close()
@@ -26,6 +28,6 @@ func showLogo() {
 
 	// Check for errors in scanning
 	if err := scanner.Err(); err != nil {
-		fmt.Printf("Error: Unable to read file %s: %v\n", fileName, err)
+		log.Error("Error: Unable to read file: ", fileName, err)
 	}
 }

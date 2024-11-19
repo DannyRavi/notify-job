@@ -4,16 +4,16 @@
 - [x] генератор случайных чисел на карте
 - [x] запись в файл
 - [x] logo
+- [x] logs
 - [ ] add pid for checking
 - [ ] cpu memo usages
 - [ ] test
-- [ ] logs
 - [ ] linter
 
 ## luigi
 - [x] core
 - [x] cmd
 - [x] combine together
-- [ ] logs
+- [x] logs
 - [ ] test
 - [ ] DOC

@@ -1,9 +1,7 @@
 package main
 
 import (
-	"fmt"
-	"os"
-
+	log "github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
@@ -13,16 +11,16 @@ var rootCmd = &cobra.Command{
 	Short: "path and number of goroutine",
 	Long:  "A CLI application to perform path of outputFile and number of goroutine.",
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("Welcome to Mario CLI. Use --help for usage.")
+		log.Debug("Welcome to Mario CLI. Use --help for usage.")
 
 	},
 }
 
 // Execute initializes the CLI
 func Execute() {
-	showLogo()
+
 	if err := rootCmd.Execute(); err != nil {
-		fmt.Println(err)
-		os.Exit(1)
+		log.Error(err)
+		// os.Exit(1)
 	}
 }
