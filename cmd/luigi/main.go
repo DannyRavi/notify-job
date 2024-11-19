@@ -13,6 +13,14 @@ func main() {
 		os.Exit(1)
 	}
 
+	pwd, err := os.Getwd()
+	if err != nil {
+		fmt.Println("Error getting working directory:", err)
+		return
+	}
+
+	fmt.Println("Current working directory:", pwd)
+
 	fmt.Println("Running as root...")
 	start := time.Now()
 	Execute()

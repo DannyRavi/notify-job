@@ -52,6 +52,30 @@ func getMapSize(data map[string]int) int {
 	return buf.Len()
 }
 
+func statFile(filePath string) error {
+
+	// Check if the file exists
+	_, err := os.Stat(filePath)
+	if err == nil {
+		// File exists, remove it
+		err = os.Remove(filePath)
+		if err != nil {
+			fmt.Println("Error removing file:", err)
+			return err
+		}
+		fmt.Println("File "+ filePath +" removed successfully.")
+	} else if os.IsNotExist(err) {
+		// File does not exist, handle accordingly
+		fmt.Println("File does not exist. ok continue")
+		return nil
+	} else {
+		// Other error occurred
+		fmt.Println("Error checking file:", err)
+		return err
+	}
+	return nil
+}
+
 func runner(numGoroutines int, pathCsv string, lenStringRnd int, NumberRnd int) error {
 	// Map to store the generated names and numbers
 	data := make(map[string]int)

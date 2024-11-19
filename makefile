@@ -4,19 +4,30 @@
 APP1 = mario
 APP2 = luigi
 
-APP1ADDR = ./cmd/mario/mario
-APP2ADDR = ./cmd/luigi/luigi
+APP1ADDR = ./cmd/mario/
+APP2ADDR = ./cmd/luigi/
 init:
 	go mod tidy
+	mkdir /tmp/lab
+	sudo chmod -R 777 /tmp/lab
 # Build both applications
 build:
 	go build -C ./cmd/mario/ -o $(APP1) 
-	go build -C ./cmd/luigi/ -o $(APP2) 
+	go build -C ./cmd/luigi/ -o $(APP2)
+	chmod +x $(APP1ADDR)/mario
+	chmod +x $(APP2ADDR)/luigi
 
 # Run both applications
-run: build
-	./$(APP1ADDR) cli -d ./tmp/out.csv -r 500 & ./$(APP2ADDR) cli -d ./temp &
+# run: build
+run:
+	cd $(APP1ADDR) && ./$(APP1)  cli -d /tmp/lab/out.csv -r 999 &
+	cd $(APP2ADDR) && sudo ./$(APP2) cli -d /tmp/lab
+run1: 
+	cd $(APP1ADDR) && ./$(APP1)  cli -d /tmp/lab/outx.csv -r 999 
+run2:
+	cd $(APP2ADDR) && sudo ./$(APP2) cli -d /tmp/lab
+
 
 # Clean the build artifacts
 clean:
-	rm -f $(APP1) $(APP2)
+	rm -f $(APP1ADDR)/mario $(APP2ADDR)/luigi

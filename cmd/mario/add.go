@@ -12,12 +12,17 @@ var addCmd = &cobra.Command{
 	Long:  "Perform addition write random map to file",
 
 	Run: func(cmd *cobra.Command, args []string) {
+		fmt.Println("number of goroutines: ", concurrent)
+		fmt.Println("output file path: ", outputPath)
 		if concurrent < minLimitGoroutine || concurrent > maxLimitGoroutine {
 			panic("please insert concurrent (r) number between 1 to 100")
 		}
-		err := runner(concurrent, outputPath, setLenRandomString, setRandomNumber)
-		fmt.Print(concurrent)
-		fmt.Print(outputPath)
+		err := statFile(outputPath)
+		if err != nil { //fixme: change to error type
+			fmt.Println("Error:", err)
+			return
+		}
+		err = runner(concurrent, outputPath, setLenRandomString, setRandomNumber)
 		if err != nil { //fixme: change to error type
 			fmt.Println("Error:", err)
 			return
