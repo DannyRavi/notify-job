@@ -5,15 +5,15 @@
 - [x] запись в файл
 - [x] logo
 - [x] logs
-- [ ] add pid for checking
-- [ ] cpu memo usages
-- [ ] test
-- [ ] linter
+- [x] add pid for checking
+- [x] benchmark
+- [x] test
+- [x] linter
 
 ## luigi
 - [x] core
 - [x] cmd
 - [x] combine together
 - [x] logs
-- [ ] test
-- [ ] DOC
+- [x] test
+- [x] DOC

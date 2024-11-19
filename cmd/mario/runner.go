@@ -12,7 +12,13 @@ import (
 	log "github.com/sirupsen/logrus"
 )
 
-func randomString(length int) string {
+func randomString(length int, fixStr bool) string {
+	if fixStr {
+		counter = counter + 1
+		strNumber := strconv.FormatUint(counter, 10)
+		mouStr := "A" + strNumber
+		return mouStr
+	}
 	const charset = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
 	rand.NewSource(time.Now().UnixNano())
 	var result []byte
@@ -26,7 +32,7 @@ func randomString(length int) string {
 func populateMap(data map[string]int, mu *sync.Mutex, wg *sync.WaitGroup, lenRndStr int, RndNum int) {
 	defer wg.Done()
 
-	// Keep adding to the map until it reaches 1MB in size
+	// Keep adding to the map until it reaches up 1MB in size
 	for {
 		// 1 second delay delay
 		time.Sleep(1000 * time.Millisecond)
@@ -36,7 +42,7 @@ func populateMap(data map[string]int, mu *sync.Mutex, wg *sync.WaitGroup, lenRnd
 			break
 		}
 
-		name := randomString(lenRndStr)
+		name := randomString(lenRndStr, fixString)
 		number := rand.Intn(RndNum)
 		data[name] = number
 		mu.Unlock()

@@ -22,11 +22,14 @@ build:
 run:
 	cd $(APP1ADDR) && ./$(APP1)  cli -d /tmp/lab/out.csv -r 999 &
 	cd $(APP2ADDR) && sudo ./$(APP2) cli -d /tmp/lab
-run1: 
+mario: 
 	cd $(APP1ADDR) && ./$(APP1)  cli -d /tmp/lab/outx.csv -r 999 
-run2:
+luigi:
 	cd $(APP2ADDR) && sudo ./$(APP2) cli -d /tmp/lab
 
+testapp:
+	cd $(APP1ADDR) && go test 
+	cd $(APP2ADDR) && go test
 
 # Clean the build artifacts
 clean:

@@ -8,20 +8,23 @@ import (
 
 var (
 	verbose           bool
+	fixString         bool
 	outputPath        string
 	concurrent        int
 	minLimitGoroutine int = 1     // Minimum allowed value
 	maxLimitGoroutine int = 10000 // Maximum allowed value
 
-	setLenRandomString int = 70     // Maximum len name
-	setRandomNumber    int = 1000    // Maximum random number
-	targetSize         int = 1 << 20 // 1MB
+	setLenRandomString int    = 70      // Maximum len name
+	setRandomNumber    int    = 1000    // Maximum random number
+	targetSize         int    = 1 << 20 // 1MB
+	counter            uint64 = 0
 	// targetSize = 1 << 20 // 1MB
 	// targetSize = 1 << 17 // 1MB
 )
 
 // const targetSize = 1 << 4 // under 1MB
 func init() {
+	fixString = false
 	showLogo()
 	log.SetFormatter(&log.TextFormatter{
 		DisableColors: false,
