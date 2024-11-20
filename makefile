@@ -17,8 +17,9 @@ build:
 	chmod +x $(APP1ADDR)/mario
 	chmod +x $(APP2ADDR)/luigi
 
-# Run both applications
-# run: build
+
+
+
 run:
 	cd $(APP1ADDR) && ./$(APP1)  cli -d /tmp/lab/out.csv -r 999 &
 	cd $(APP2ADDR) && sudo ./$(APP2) cli -d /tmp/lab

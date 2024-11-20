@@ -30,8 +30,9 @@ This repository contains two Golang applications:
 * **Usage: (makefile)**
     1. extract zip file and going to folder.
     2. clean file: `make clean`
-    3. Build the application: `make build`
-    4. Run the application: `make mario`
+    3. init the application: `make init`
+    4. Build the application: `make build`
+    5. Run the application: `make mario`
 
 * **Usage: (manual)**
     1. extract zip file and going to folder.
@@ -76,8 +77,9 @@ INFO[2024-11-20T02:21:47+03:30] Execution time: 27.931528102s
 * **Usage: (makefile)**
     1. extract zip file and going to folder.
     2. clean file: `make clean`
-    3. Build the application: `make build`
-    4. Run the application: `make luigi`
+    3. init the application: `make init`
+    4. Build the application: `make build`
+    5. Run the application: `make luigi`
 
 * **Usage: (manual)**
     0. noticed: you must run File Writer (Mario) app before to execute this app.
@@ -89,11 +91,12 @@ INFO[2024-11-20T02:21:47+03:30] Execution time: 27.931528102s
 
 ### **Running Both Applications Together**
 
-* **Usage: (makefile)**
+* **Usage: (makefile) suggest**
     1. extract zip file and going to folder.
     2. clean file: `make clean`
-    3. Build the application: `make build`
-    4. Run the application: `make run`
+    3. init the application: `make init`
+    4. Build the application: `make build`
+    5. Run the application: `make run`
 
 * **Usage: (manual)**
     1. Start the `mario` application.
