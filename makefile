@@ -4,8 +4,8 @@
 APP1 = mario
 APP2 = luigi
 
-APP1ADDR = ./cmd/mario/
-APP2ADDR = ./cmd/luigi/
+APP1ADDR = ./cmd/mario
+APP2ADDR = ./cmd/luigi
 init:
 	go mod tidy
 	mkdir /tmp/lab
