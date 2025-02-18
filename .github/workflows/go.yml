@@ -31,5 +31,5 @@ jobs:
       run: make build
       
     - name: test all
-      run: go test ./cmd/mario & go test ./cmd/luigi
+      run: sudo go test ./cmd/mario & sudo go test ./cmd/luigi
 
