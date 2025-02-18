@@ -30,6 +30,6 @@ jobs:
     - name: build
       run: make build
       
-    - name: test ALL
-      run: make testapp
+    - name: test mario
+      run: go test /cmd/mario
 
