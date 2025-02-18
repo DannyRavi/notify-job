@@ -1,6 +1,6 @@
 **README**
 
-# **graph-co code exam**
+# **short-job test**
 
 This repository contains two Golang applications:
 
